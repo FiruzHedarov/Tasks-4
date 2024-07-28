@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+       stack <char> subs;
+       if (s.length() == 0)
+       {
+            return true;
+       }
+       for (int i = 0; i < s.length(); i++)
+       {
+            subs.push(s[i]);
+       }
+       while (!(t.length() == 0))
+       {
+            if (t[t.length() - 1] == subs.top())
+            {
+                subs.pop();
+                if (subs.empty()) return true;
+            }
+            t.erase(t.length() - 1);
+       }
+       if (subs.empty()) return true;
+       else return false;
+    }
+};
