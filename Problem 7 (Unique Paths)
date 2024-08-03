@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        vector <int> abLine(n, 1);
+        for (int line = 1; line < m; line++)
+        {
+            vector <int> curLine(n, 1);
+            for (int col = 1; col < n; col++)
+            {
+                curLine[col] = curLine[col - 1] + abLine[col];
+            }
+            abLine = curLine;
+        }
+        return abLine[n - 1];
+    }
+};
