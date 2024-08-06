@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool canPartition(vector<int>& nums) {
+        int result = 0;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            result += nums[i];
+        }
+        if (result % 2) return false;
+        result = (result / 2);
+        vector <bool> answ (result + 1, false);
+        answ[0] = true;
+        for(int i = 0; i < nums.size(); i++)
+        {
+            for (int j = result; j >= nums[i]; j--)
+            {
+                answ[j] = answ[j] || answ[j - nums[i]];
+            }
+        }
+        return answ[result];
+    }
+};
